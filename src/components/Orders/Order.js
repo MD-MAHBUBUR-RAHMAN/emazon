@@ -1,19 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useCart from "../../Hooks/useCart";
-import useProduct from "../../Hooks/useProduct";
 import { removeFromDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Reviewitem from "../ReviewItem/Reviewitem";
 import "./Order.css";
 const Order = () => {
-  const [products, setProducts] = useProduct();
-  const [cart, setCart] = useCart(products);
-
+  const [cart, setCart] = useCart();
   const handelRemoveProduct = (product) => {
-    const rest = cart.filter((pd) => pd.id !== product.id);
+    const rest = cart.filter((pd) => pd._id !== product._id);
     setCart(rest);
-    removeFromDb(product.id);
+    removeFromDb(product._id);
   };
 
   return (
@@ -21,7 +18,7 @@ const Order = () => {
       <div className="review-products-container">
         {cart.map((product) => (
           <Reviewitem
-            key={product.id}
+            key={product._id}
             product={product}
             remove={handelRemoveProduct}
           />
@@ -30,7 +27,7 @@ const Order = () => {
       <div className="cart-container">
         <Cart cart={cart}>
           <button>
-            <Link to="/inventory">Proceed Order</Link>
+            <Link to="/shipment">Proceed Shipping</Link>
           </button>
         </Cart>
       </div>

@@ -6,10 +6,27 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 45px;
-    margin: 100px 50px;
+    margin: 50px;
+    justify-items: center;
 }
 .cart-container{
     background-color: rgba(255, 153, 0, 0.3);
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.pagination button{
+    margin-right: 10px;
+    padding: 5px 10px;
+    background: white;
+    border: 1px solid goldenrod;
+}
+.pagination .selected {
+    background-color: orange;
+    color: white;
 }
 @media screen and (max-width:1100px) {
     .products-container{
